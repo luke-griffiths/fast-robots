@@ -1,2 +1,2 @@
-# The main page 
-## Luke Griffiths
+# Home 
+## *Under construction*

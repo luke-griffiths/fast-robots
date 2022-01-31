@@ -3,7 +3,7 @@ This simple lab involved downloading the Arduino IDE and uploading a few pre-wri
 ### Blinking the Onboard LED
 The first test script simply blinked the onboard LED. You'll notice in the video that the LED remains on for three seconds, then turns off for one. The default code for the blink script has the LED turn on and off for one second each; however, I noticed that the Artemis's LED was blinking at this rate before I had even uploaded the blink script to the board. It's likely that the Artemis board was shipped with the blink code pre-uploaded, so I changed the blink script to be three seconds on, one second off to ensure the script worked properly. 
 
-![https://youtu.be/DnNpz_ROOb8]()
+![YouTube link](https://youtu.be/DnNpz_ROOb8)
 
 ### Mic Check
 The next test script for the Artemis board was Arduino's MicrophoneOutput script. This script prints out the detected frequency coming from the microphone to the serial monitor. You can see the result of whistling on the microphone's detected frequency below. 

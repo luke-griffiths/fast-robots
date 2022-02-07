@@ -29,6 +29,7 @@ I defined called notification_handler. This function took a UUID and an array of
 the UUID isn't used in my code; however, if I want to be able to handle other data types in the future, the UUID will come into play. Notification_handler converts the 
 array of bytes into a float and updates the global float_value to this value. To test my function (and ensure the global variable was updated) I used a while loop that 
 printed the value of the global variable every second. 
+
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/71809396/152833559-abe95d20-1e3c-49f3-b749-d36cbd01a82a.gif)
 
 ## Task 4: String vs Float

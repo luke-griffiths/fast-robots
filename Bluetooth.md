@@ -24,4 +24,8 @@ printed the value of the global variable every second.
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/71809396/152833559-abe95d20-1e3c-49f3-b749-d36cbd01a82a.gif)
 
 ## Task 4: String vs Float
-Sending less (more compact) data is more efficient than sending longer sequences of bits. Since a float is four bytes and a string 
+Sending less (more compact) data is more efficient than sending longer sequences of bits. We want our robot to transfer data to the computer as efficiently as 
+possibly. When choosing between sending a float from the Artemis to the Mac as a float or instead sending it as a string and then converting the string to
+a float, it would only make sense to send the float value as a string if the string would be less than 4 characters. This is because an ASCII character is 1 byte, 
+and a float is 4 bytes. So if the data we want to send is small enough to be encoded in three or fewer characters, I should send it as a string and then have 
+the Mac convert the string to a float. 

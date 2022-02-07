@@ -19,7 +19,8 @@ The purpose of this task is to use the ECHO command on the Mac, which sends a st
 <img width="587" alt="Screen Shot 2022-02-07 at 4 49 12 PM" src="https://user-images.githubusercontent.com/71809396/152879046-9a25e09a-471c-4a63-a5b9-c038b9be6a4b.png">
 
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/71809396/152879233-cbd8099b-a65d-44ea-9b68-a9867e3791f4.gif)
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/71809396/152880008-5ae4eda9-64a4-4877-9816-1554ba29bdf0.gif)
+
 
 
 ## Task 3: Python Notification Handler

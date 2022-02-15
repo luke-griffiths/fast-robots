@@ -36,9 +36,10 @@ To setup the IMU, I once again used the I2C code. This time the device was detec
 <img width="458" alt="Screen Shot 2022-02-14 at 6 45 15 PM" src="https://user-images.githubusercontent.com/71809396/153965847-c82f61f9-12fa-48e6-9874-83f1286da9c9.png">
 
 To test the IMU, I ran the provided code after making one change: the AD0_VAL needed to be set to 0, because the last bit of the IMU's I2C address is a 0. 
-Note that any odd numbered I2C addresses need AD0_VAL to be 1, and any even addresses need it to be 0. The information on the serial monitor is a lot to look at, 
-so I modified it to be more user friendly. Here is my code, which condenses the information down to pitch and roll for the accelerometer, 
-and pitch, roll, and yaw for the gyroscope. 
+Note that any odd numbered I2C addresses need AD0_VAL to be 1, and any even addresses need it to be 0. I then tested the IMU's ability to capture pitch. I started in the -90 degree position, then changed to 0 degrees, followed by 90 degrees. For some reason, the IMU registered -90 as a large positive value rather than the -pi/2 radians I was expecting. I don't believe this is an issue with my code, but I need to get access to a second IMU to determine if there's a defect with the one I'm using. 
+
+<img width="435" alt="Screen Shot 2022-02-14 at 11 27 04 PM" src="https://user-images.githubusercontent.com/71809396/153992615-be887daf-1aa5-4f7c-b3d1-2581532bf2c5.png">
+
 
 
 

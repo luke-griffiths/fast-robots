@@ -14,12 +14,15 @@ as 2.36 m/s. This was calculated by starting the car from a stopped position for
 
 <iframe width="560" height="315" src="https://youtu.be/B3_lD5pFFHM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 <a href="https://youtu.be/B3_lD5pFFHM"> Speed Test </a>
+
 ### Control/tricks
 I noticed that the robot handles differently depending on the surface and battery level. On grippy surfaces with high charge, the robot can get incredibly fast. I look forward to measuring the max acceleration of the robot, because it is powerful enough to flip and leave the ground. On less grippy surfaces, the robot is slower due to slippage. Cleaning dust and dirt off the wheels helps it gain traction on smooth floors. I was very happy to note that the robot could turn in place with a high degree of accuracy, as you can see in the following video. Controlling the robot with the remote is difficult, but the actual behavior of the robot is encouraging since it remains in the same position when turning 360 degrees. This will help the robot effectively map the room it is in once the ToF sensors are mounted. 
 
 <iframe width="560" height="315" src="https://youtu.be/ALRNZdU9o0A" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 <a href="https://youtu.be/ALRNZdU9o0A"> Turn in Place </a>
+
 ### Observations
 My main observation is that this really is a fast robot. Mapping and localization at this speed is going to be nearly impossible, so I expect to slow the robot down during these events. In addition, at high speed the robot is subject to a lot of slipping and can even leave the ground when the batteries are fresh enough. Controlling the robot is extremely challenging. The remote control only allows for impulses to the motor controller, but these impulses are not fine enough to move the robot smoothly. My motor drivers will need to be able to more precisely control the robot if I want it to not jerk and turn too far. The following video shows how challenging it is to drive the robot around a square (marked out on the floor with blue tape). 
+
 <a href="https://youtu.be/Kz4Bg6w9VNY"> Square Test </a>
 <iframe width="560" height="315" src="https://youtu.be/Kz4Bg6w9VNY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

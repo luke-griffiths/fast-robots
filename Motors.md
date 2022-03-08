@@ -8,8 +8,7 @@ so I was sure not to make the same mistake). For the signal wires coming from th
 
 ![IMG_6222](https://user-images.githubusercontent.com/71809396/157168254-4570de25-3a12-4178-8536-3954c25624fe.jpg)
 
-I plan on keeping both batteries in the battery compartment of the car, with the Artemis, IMU, and motor drivers where they are in the image above. The ToF sensors will 
-be mounted on the front and right sides of the car.
+I plan on keeping both batteries in the battery compartment of the car, with the Artemis, IMU, and motor drivers where they are in the image above (right side compartment). The ToF sensors will be mounted on the front and right sides of the car.
 
 ## PWM Duty Cycle
 I ran the motors at a 10% duty cycle and a 20% duty cycle. Because the wheels were suspended in the air and had little resistance, they were scarily fast 

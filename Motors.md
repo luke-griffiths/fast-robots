@@ -27,9 +27,9 @@ and here's 20%
 <iframe width="560" height="315" src="https://youtu.be/R6NFwGVXkhc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> 20% Duty Cycle
 
 Interestingly, in the video at 20%, there appears to be temporal aliasing. You can see the spokes of the wheel appear to turn in the opposite direction for the first second or so of the video. According to the camera data, the video is shot with 60 fps. This means that the wheel was rotating at just under 60 times/second. 
-This is extremely fast for such a low duty cycle; however, keep in mind that the wheels have nearly no load when they're suspended in the air. According to my calculations from lab 4, the motors didn't even spin that fast during the max speed test. 
+This is extremely fast for such a low duty cycle; however, keep in mind that the wheels have nearly no load when they're suspended in the air. According to my calculations from lab 4, the motors didn't even spin that fast during the max speed test, so it's unlikely you'd see aliasing in a video of the car driven on the ground.
 
-Since this lab is very hardware heavy, I just ran basic commands to drive the motors. The following code is all that is needed to make the car move in a straight line:
+Since this lab is hardware heavy, I just ran basic commands to drive the motors. The following code is all that is needed to make the car move in a straight line:
 
 <img width="175" alt="Screen Shot 2022-03-08 at 12 14 03 AM" src="https://user-images.githubusercontent.com/71809396/157170836-84b65fcc-6dfa-4fe6-b55a-327a4b288b5b.png">
 
@@ -46,5 +46,7 @@ The even numbered analog pins (0 and 2) move the car forward, while the odd pins
 
 <iframe width="560" height="315" src="https://youtu.be/f85yQD4egsQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> circle test
 
+## Lower limit
+I found that the lower limit of the motors (the point at which they no longer moved the car) was about 10% duty cycle (25/255) for moving in a straight line; however, when trying to make a left or right turn, the motors couldn't move the car starting at about 14% duty cycle (35/255). 
 
 

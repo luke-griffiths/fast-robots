@@ -4,3 +4,4 @@
 
 <a href="cyclone.html"> lab 4 </a>
 
+<a href="motors.html"> lab 5 </a>

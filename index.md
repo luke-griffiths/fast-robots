@@ -5,3 +5,5 @@
 <a href="cyclone.html"> lab 4 </a>
 
 <a href="Motors.html"> lab 5 </a>
+
+<a href="PID.html"> lab 6 </a>

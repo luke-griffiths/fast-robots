@@ -10,7 +10,8 @@ I implemented several new commands to streamline the process of sending data bet
 
 My PID implementation is simple, and takes up just a few lines. 
 
-<img width="499" alt="Screen Shot 2022-03-15 at 12 20 52 AM" src="https://user-images.githubusercontent.com/71809396/158306243-502b2304-dbd8-466b-b469-56f5719f6cf6.png">
+<img width="448" alt="Screen Shot 2022-03-15 at 12 24 52 AM" src="https://user-images.githubusercontent.com/71809396/158316446-4326cfb5-6be3-44ec-b5e5-6a00c0a91672.png">
+
 
 However, since I want the car to stop 300mm from the wall, I need the PID output to activate different pins on the Artemis depending on whether the car is less than or greater than 300mm from the wall. Since my implementation gives negative PID output values for sensor measurements that exceed the setpoint, I write signals to pins 1 and 3 when negative and 0 and 2 when positive. 
 

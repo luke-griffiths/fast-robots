@@ -7,3 +7,9 @@
 <a href="Motors.html"> lab 5 </a>
 
 <a href="PID.html"> lab 6 </a>
+
+<a href="KalmanFilter.html"> lab 7 </a>
+
+<a href="Stunts.html"> lab 8 </a>
+
+<a href="RealMapping.html"> lab 9 </a>

@@ -1,5 +1,5 @@
 # Lab 7
-**being written right now, 4/24 2:03p
+**being written right now, 4/24 3:41p
 ## Overview
 The purpose of this lab is to implement a Kalman filter that takes data from a ToF sensor and combines it with a motion model to calculate a more accurate measurement of my car's position as it drives toward a wall. 
 ## Data collection

@@ -19,4 +19,6 @@ The simplest way to implement this lab would be to have the car drive forward at
 
 The implementation of kfFunction is shown below. It uses the same Kalman filter as lab7, except it changes the value of reachedSetPoint to true if the filter output is less than 0.5m. 
 
-** place screenshot here
+<img width="416" alt="Screen Shot 2022-04-25 at 12 22 18 AM" src="https://user-images.githubusercontent.com/71809396/165020573-208fe402-1c40-4d5d-8873-422262b475d0.png">
+
+I believe this implementation should result in a successful flip. Hopefully I'm able to debug the hardware issues with my robot this week (4/25) and get a video of the robot in action. 

@@ -1,5 +1,5 @@
 # Lab 7
-**being written right now, 4/24 3:41p
+**Not finished
 ## Overview
 The purpose of this lab is to implement a Kalman filter that takes data from a ToF sensor and combines it with a motion model to calculate a more accurate measurement of my car's position as it drives toward a wall. 
 ## Data collection
@@ -15,3 +15,15 @@ The next step in the process is determining the A and B matrices. I used my velo
 
 ## Kalman Filter Implementation
 
+The first step in the Kalman fitler implementation is determing how much we trust our sensors vs our motion model. If we trust the sensors too much, the Kalman filter will be essentially useless, since it will output a PWM value similar to the PID without a Kalman filter; however, trusting the motion model too much may cause the robot to become lost if the motion model is inaccurate. My covariance matrices are of the following form:
+
+sig_u=np.array([[sigma_1**2,0],[0,sigma_2**2]]) //We assume uncorrelated noise, therefore a diagonal matrix works.
+sig_z=np.array([[sigma_4**2]])
+
+where sigma_1 and sigma_2 place trust in the sensor data and sigma_4 places trust in the model. Thus a larger sigma_4 relative to sigma_1 and sigma_2 places more trust in the model than the sensor data. My C matrix is C = np.array([[-1,0]]), since I'm measuring the distance to the wall while driving toward it (thus the negative sign). 
+
+**Insert Kalman filter plot from python sanity check with sigma values in plots
+
+## Kalman filter on the Robot
+
+** code snippet here

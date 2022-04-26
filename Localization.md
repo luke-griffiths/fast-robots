@@ -79,6 +79,22 @@ def compute_control(cur_pose, prev_pose):
 ```
 ### sensor_model
 This function is implemented incorrectly. I originally returned one single measurement, not an array of 18. This needs to be updated !!!
+```
+def sensor_model(obs):
+    """ This is the equivalent of p(z|x).
+
+
+    Args:
+        obs ([ndarray]): A 1D array consisting of the true observations for a specific robot pose in the map 
+
+    Returns:
+        [ndarray]: Returns a 1D array of size 18 (=loc.OBS_PER_CELL) with the likelihoods of each individual sensor measurement
+    """
+    s = mapper.get_views(get_pose())
+    prob = np.zeros_like(obs)
+    prob[:] = loc.gaussian(obs[:] - s[:], 0, loc.sensor_sigma)
+    return prob
+```
 
 ### update_step
 This function simply performs the update of beliefs using the sensor model and bel_bar. 

@@ -13,3 +13,5 @@
 <a href="Stunts.html"> lab 8 </a>
 
 <a href="RealMapping.html"> lab 9 </a>
+
+<a href="Localization.html"> lab 11 </a>

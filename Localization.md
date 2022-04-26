@@ -1,10 +1,12 @@
 # Localization
 
-This lab is mostly complete, I'm just having one small issue with my code that is preventing the simulation to run to completion. I've looked at other students code and can't see anything that would cause the issue, so if I can debug it today during lab the video will be uploaded by this evening. 
+*Disclaimer: I had an issue that prevented me from recording the video and submitting before the lab deadline. Jonathan was able to find the issue with my code, which I have corrected and have noted in the report below. None of the code changes come from the released code, and any other edits after the deadline are solely for adding detail to my report. 
 
-The purpose of this lab is to implement a Bayes filter for robot localization. The tasks in this lab were to write 4-5 functions that make up the Bayes filter and then demonstrate via screen capture that the implementation works correctly. 
+The purpose of this lab is to implement a Bayes filter for robot localization. The tasks in this lab were to write 5 functions that make up the Bayes filter and then demonstrate via screen capture that the implementation works correctly. 
+
+
 ### compute_control
-This function takes two poses and calculates the change between them using a rotation, translation, and then a final rotation. 
+This function takes two poses and calculates the change between them using a rotation, translation, and then a final rotation. The idea is that any robot movement can be simplified to this sequence of movements. I calculated the translation as the euclidean distance between the x,y coordinates of the initial pose and the x,y coordinates of the current pose.  
 
 ```
 def compute_control(cur_pose, prev_pose):
@@ -31,7 +33,7 @@ def compute_control(cur_pose, prev_pose):
     return delta_rot_1, delta_trans, delta_rot_2
  ```
  ### odom_motion_model
- This function outputs the probability of a state change given a previous state and a current state. 
+ This function outputs the probability of a state change given a previous state and a current state. Since the errors in state change are independent for rotation 1, translation, and rotation 2, we can compute the total probability by multiplying these three. 
  ```
  def odom_motion_model(cur_pose, prev_pose, u):
     """ Odometry Motion Model
@@ -53,9 +55,9 @@ def compute_control(cur_pose, prev_pose):
     return p1 * p2 * p3
  ```
  ### prediction_step
- This function updates the probabilities from the previous time step using the odometry motion model. 
+ This function updates the bel_bar probabilities using the odometry motion model. Note that this code has 6 nested for-loops. This is extremely computationally expensive, and gave me a lot of trouble. I ended up restricting the innermost three for-loops by requiring the belief to be above a 0.0001 threshold, thus reducing the number of computations and speeding up this function. For future implementations, I would want to change this to using np functions rather than for-loops, because this would make computation much faster. 
  ```
- def prediction_step(cur_odom, prev_odom):
+def prediction_step(cur_odom, prev_odom):
     """ Prediction step of the Bayes Filter.
     Update the probabilities in loc.bel_bar based on loc.bel from the previous time step and the odometry motion model.
 
@@ -71,17 +73,18 @@ def compute_control(cur_pose, prev_pose):
         for j in range (9) :
             for k in range(18) :
                 x_t_prev = mapper.from_map(i, j, k)
-                for x in range (12) :
-                    for y in range(9) :
-                        for z in range(18) :
-                            x_t = mapper.from_map(x, y, z) 
-                            prob = odom_motion_model(x_t, x_t_prev, u)
-                            loc.bel_bar[x][y][z] += prob * loc.bel[i][j][k]
+                if loc.bel[i][j][k] > 0.0001:
+                    for x in range (12) :
+                        for y in range(9) :
+                            for z in range(18) :
+                                x_t = mapper.from_map(x, y, z) 
+                                prob = odom_motion_model(x_t, x_t_prev, u)
+                                loc.bel_bar[x][y][z] += prob * loc.bel[i][j][k]
     #normalization                        
     loc.bel_bar = loc.bel_bar / np.sum(loc.bel_bar)
 ```
 ### sensor_model
-This function 
+This function the simplest of the 5, and simply returns an array of sensor measurements for a particular pose in the map. Note that this means the return is an array of 18 measurements. This function could also be done with a np function, which would improve efficiency; however, I returned to a simpler method when debugging because I wanted to make sure the issue wasn't with sensor_model. 
 ```
 def sensor_model(obs):
     """ This is the equivalent of p(z|x).
@@ -93,12 +96,6 @@ def sensor_model(obs):
     Returns:
         [ndarray]: Returns a 1D array of size 18 (=loc.OBS_PER_CELL) with the likelihoods of each individual sensor measurement
     """
-    """ t = cmdr.get_pose()
-    ang = np.degrees(t[2])
-    s = mapper.get_views(t[0], t[1], ang)
-    prob = np.zeros_like(obs)
-    prob[:] = loc.gaussian(obs[:] - s[:], 0, loc.sensor_sigma)
-    return prob"""
     prob = np.zeros_like(obs)
     for i in range(18):
         prob[i] = loc.gaussian(loc.obs_range_data[i], obs[i], loc.sensor_sigma)
@@ -106,7 +103,7 @@ def sensor_model(obs):
 ```
 
 ### update_step
-This function simply performs the update of beliefs using the sensor model and bel_bar. 
+The update step is where I had an issue. Thank you Jonathan for pointing out my error. Because sensor_model returns an array of 18 measurements, I need to take the product of all 18 measurements. This is the probability of a particular measurement given a particular pose (P(Zt | Xt)). I used np.prod() to multiply the array; however, this means I need to scale the belief at the end. 
 
 ```
 def update_step():
@@ -116,9 +113,21 @@ def update_step():
     for i in range(12):
         for j in range(9):
             for k in range(18):
-                loc.bel[i][j][k] = loc.bel_bar[i][j][k] * sensor_model(mapper.get_views(i, j, k))
+                loc.bel[i][j][k] = loc.bel_bar[i][j][k] * np.prod(sensor_model(mapper.get_views(i, j, k)))
     loc.bel = loc.bel / np.sum(loc.bel)
 ```
+
+## Video 
+Below you can see that my implementation works. The red line is the robot without running the Bayes filter, the green line is the robot's actual movement, and the blue line is the predicted movement with the Bayes filter. Note how incorrect the red line gets, as well as how well the blue line follows the actual movement of the robot. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xgGgxwPifBg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+## Data 
+Here is a sample of the ground truth poses and the belief of the robot's pose. Clearly the robot is able to accurately determine the tile it is in and rarely makes a mistake. Within the tile there is some difference between the ground truth and the robot's actual position, but it's always very close. The robot is most likely to have an incorrect belief when it's at a tile that is near another tile which would have very similar measurements during a rotation. For example, if the robot was in the middle of a large open space, it would have difficulty differentiating between two adjacent tiles since the 18 measurements during rotation would likely be very similar. When the robot is moving through landscapes that have drastic differences in measurements for adjacent positions (such as near a doorway) the Bayes filter is going to have a much easier time guessing where it is. 
+
+<img width="331" alt="Screen Shot 2022-04-26 at 5 16 20 PM" src="https://user-images.githubusercontent.com/71809396/165394018-44880d46-b157-4e55-93bc-9b11b5847182.png">
+
+
 
 
 

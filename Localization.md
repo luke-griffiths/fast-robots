@@ -75,13 +75,13 @@ def compute_control(cur_pose, prev_pose):
                     for y in range(9) :
                         for z in range(18) :
                             x_t = mapper.from_map(x, y, z) 
-                            prob = odom_motion_model(x_t, x, u)
+                            prob = odom_motion_model(x_t, x_t_prev, u)
                             loc.bel_bar[x][y][z] += prob * loc.bel[i][j][k]
     #normalization                        
     loc.bel_bar = loc.bel_bar / np.sum(loc.bel_bar)
 ```
 ### sensor_model
-This function is implemented incorrectly. I originally returned one single measurement, not an array of 18. This needs to be updated !!!
+This function 
 ```
 def sensor_model(obs):
     """ This is the equivalent of p(z|x).
@@ -93,9 +93,15 @@ def sensor_model(obs):
     Returns:
         [ndarray]: Returns a 1D array of size 18 (=loc.OBS_PER_CELL) with the likelihoods of each individual sensor measurement
     """
-    s = mapper.get_views(get_pose())
+    """ t = cmdr.get_pose()
+    ang = np.degrees(t[2])
+    s = mapper.get_views(t[0], t[1], ang)
     prob = np.zeros_like(obs)
     prob[:] = loc.gaussian(obs[:] - s[:], 0, loc.sensor_sigma)
+    return prob"""
+    prob = np.zeros_like(obs)
+    for i in range(18):
+        prob[i] = loc.gaussian(loc.obs_range_data[i], obs[i], loc.sensor_sigma)
     return prob
 ```
 

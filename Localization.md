@@ -1,4 +1,7 @@
 # Localization
+
+This lab is mostly complete, I'm just having one small issue with my code that is preventing the simulation to run to completion. I've looked at other students code and can't see anything that would cause the issue, so if I can debug it today during lab the video will be uploaded by this evening. 
+
 The purpose of this lab is to implement a Bayes filter for robot localization. The tasks in this lab were to write 4-5 functions that make up the Bayes filter and then demonstrate via screen capture that the implementation works correctly. 
 ### compute_control
 This function takes two poses and calculates the change between them using a rotation, translation, and then a final rotation. 

@@ -48,20 +48,22 @@ cmdr.set_vel(0,0)
 ```
 Note that set_vel() commands have an infinite duration. This is why I used sleep() to act as a timer before changing the set_vel command. A video of the robot completing this square is below.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7ffyEpkBvKc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-https://user-images.githubusercontent.com/71809396/166268199-ffd56e5a-7aed-419e-83b2-542d5bf198db.mov
-
-I wanted to see whether the robot followed the exact same path every time or if there was slight differences due to noise. I ran the open-loop square commands twice and used get_pose() at each point before the robot made a turn. Since get_pose() returns two arrays,
+I wanted to see whether the robot followed the exact same path every time or if there were slight differences due to noise. I ran the open-loop square commands twice and used get_pose() at each point before the robot made a turn. Since get_pose() returns two arrays,
 I only used the ground truth array since I would expect the odometry array to be different. Trial #1 resulted in these four sets of measurments
-0.45833322	0	          0
-0.49246258	0.47494012	1.58666539
-0.01728401	0.49003166	3.17999721
--0.00510357	-0.01947328	4.7666626
+
+* 0.45833322	0	          0
+* 0.49246258	0.47494012	1.58666539
+* 0.01728401	0.49003166	3.17999721
+* -0.00510357	-0.01947328	4.7666626
+
 and trial #2 resulted in these measurements
-0.49166653	0	          0
-0.51548159	0.46666497	1.57333207
-0.01551206	0.50412995	3.16666389
-1.34E-03	  -1.31E-02	  4.73E+00
+
+* 0.49166653	0	          0
+* 0.51548159	0.46666497	1.57333207
+* 0.01551206	0.50412995	3.16666389
+* 1.34E-03	  -1.31E-02	  4.73E+00
 
 Clearly there is some variation between the ground truth poses across different runs of the robot, which means the simulator introduces a bit of noise just like the real world. This also means that the robot does not travel the same exact square.
 I also plotted the ground truth and odometry data for the square loop. The ground truth is in green, and the odometry is in red. Note how inaccurate the odemetry data is. This is the reason that I will use a Bayes filter in Lab 11 to make the odometry data better match the robot's ground truth.
@@ -109,7 +111,8 @@ while(isRunning):
         cmdr.set_vel(1.2,0)
 ```
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed-hnoqYwA0bk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-hnoqYwA0bk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 

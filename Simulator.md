@@ -70,5 +70,47 @@ I also plotted the ground truth and odometry data for the square loop. The groun
 
 ## Closed-loop control
 
+My first attempt at implementing closed-loop control for obstacle avoidance is a simple function that checks the ToF sensor value and turns the robot to the left if the value is under a certain threshold, else the robot drives forward at a constant speed.
+```
+while(isRunning):
+    pose, gt_pose = cmdr.get_pose()
+    cmdr.plot_odom(pose[0], pose[1])
+    cmdr.plot_gt(gt_pose[0], gt_pose[1])
+    if cmdr.get_sensor() < threshold:
+        cmdr.set_vel(0,0.4)
+        await asyncio.sleep(1.5)
+    else:
+        cmdr.set_vel(0.5,0)
+```
+This works fine for extremely simple obstacle avoidance, but the robot can get stuck in a loop as you will see in the video below. 
+
+
+* insert video 1 here
+
+To make the robot act more "random" I decided to let python's random() function determine the direction and duration of each turn. 
+I used random to choose the direction the robot would make each turn. I made this a coin flip between rotating left and rotating right. I then used random() again and scaled it by 3.2 to get the duration of each turn. Since random() outputs a float between 0 and 1, this means the max duration of a turn is 3.2 seconds. This method seemed to work pretty well and did allow the robot to act more randomly and move throughout the whole map. I initially found that when the threshold and turn duration value are too low the robot can get stuck in a corner; however, I increased the turn duration value from 2.5 to 3.2 and this seemed to solve the issue. It still can get stopped in corners, but it always seems to be able to get out. By increasing the turn duration scaling value even further, you could make the robot even less likely to get stuck in corners. 
+```
+import random
+threshold = 0.55
+direction = 0.4
+cmdr.reset_plotter()
+cmdr.reset_sim()
+while(isRunning):
+    pose, gt_pose = cmdr.get_pose()
+    cmdr.plot_odom(pose[0], pose[1])
+    cmdr.plot_gt(gt_pose[0], gt_pose[1])
+    if cmdr.get_sensor() < threshold:
+        randdur = 3.2 * random.random()
+        randdir = random.random()
+        if randdir > 0.5:
+            direction *= -1
+        cmdr.set_vel(0,direction)
+        await asyncio.sleep(randdur)
+    else:
+        cmdr.set_vel(1.2,0)
+```
+
+*video 2
+
 
 

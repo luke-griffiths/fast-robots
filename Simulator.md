@@ -84,8 +84,7 @@ while(isRunning):
 ```
 This works fine for extremely simple obstacle avoidance, but the robot can get stuck in a loop as you will see in the video below. 
 
-
-* insert video 1 here
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dOLfHFtjDGA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 To make the robot act more "random" I decided to let python's random() function determine the direction and duration of each turn. 
 I used random to choose the direction the robot would make each turn. I made this a coin flip between rotating left and rotating right. I then used random() again and scaled it by 3.2 to get the duration of each turn. Since random() outputs a float between 0 and 1, this means the max duration of a turn is 3.2 seconds. This method seemed to work pretty well and did allow the robot to act more randomly and move throughout the whole map. I initially found that when the threshold and turn duration value are too low the robot can get stuck in a corner; however, I increased the turn duration value from 2.5 to 3.2 and this seemed to solve the issue. It still can get stopped in corners, but it always seems to be able to get out. By increasing the turn duration scaling value even further, you could make the robot even less likely to get stuck in corners. 
@@ -110,7 +109,9 @@ while(isRunning):
         cmdr.set_vel(1.2,0)
 ```
 
-*video 2
+<iframe width="560" height="315" src="https://www.youtube.com/embed-hnoqYwA0bk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
 
 
 

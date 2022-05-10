@@ -1,2 +1,55 @@
 # Lab 9
-Check back on 4/21
+
+The purpose of this lab is to implement a very simple PID to control the angular speed of the robot. This will allow me to capture distance measurements as the robot spins in place. 
+Arrays of measurement data can then be combined to form a map of the robot's environment. 
+
+## PID
+For this lab, I exchanged my PID for a much simpler version. Previously, my implementation was 
+```
+PID(float setpoint, float currentPoint){
+  //calculate the error
+  float error = setpoint - currentPoint;
+  //calculate terms
+  float p = Kp * error;
+  integral
+  += error * dt:
+  float i = Ki * integral;
+  float d = Kd * (error - previousError)/dt:
+  float output = p + i + d;
+  //update previous error
+  previousError = error:
+  return output; 
+}
+```
+which was then fed into a complicated clamping function to ensure the motor values didn't exceed 255 or fall below 0; however, since I just wanted to keep the robot spinning
+in place at 20 degrees per second, I experimented and found that a PWM value of 75/255 was around 20 degrees/sec. I then used the value of 75 as my setpoint.
+```
+int setpoint = 75;
+int simplePID(){
+    //aim for 18 measurements per rotation
+    int error = 20 - myICM.gyrZ(); //the axis (x,y,z) needs to be changed if the IMU orientation is changed
+    int motorVal = Kp * error;
+
+    analogWrite(0,0);
+    analogWrite(1,setpoint + motorVal);//right wheel forward
+    analogWrite(2,setpoint + motorVal);//left wheel backward
+    analogWrite(3,0);
+
+}
+```
+Below is a video of the car spinning in a circle at the setpoint of 75. It's spinning much faster than 20 degrees per second here because the surface is slippery, 
+but you can clearly see that the robot stays roughly in the exact same position while spinning. If I wanted the car to slow down enough to be useful on this surface, I would need to make Kp much larger.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eMrYPoE4qGI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+I then created an interrupt function so that I would only take a distance measurement every 20 degrees (1 second). 
+```
+void sensorInterrupt{
+    if (millis() - prevTime > 1000){
+        distanceArray[i] = distanceSensor.getDistance();
+        prevTime += 1000;
+        i +=1;
+    }
+}
+```
+This made it much easier to keep deal with the data, and ensured that I only collected 18 data points. 

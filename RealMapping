@@ -57,7 +57,7 @@ void sensorInterrupt{
 I put the robot at position (5,-3) in the map and recorded its ToF sensor values as it spun in a circle. 
 These values were stored in an array which I sent to my computer and processed in python. An example of the ToF readout is below
 
-
+Image1 here
 
 
 

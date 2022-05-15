@@ -57,24 +57,28 @@ void sensorInterrupt{
 I put the robot at position (5,-3) in the map and recorded its ToF sensor values as it spun in a circle. 
 These values were stored in an array which I sent to my computer and processed in python. An example of the ToF readout is below
 
-Image1 here
+![image1](https://user-images.githubusercontent.com/71809396/168492131-6f198633-bbee-4500-8d63-1ef69a2b546c.png)
 
+I then collected the sensor values for all five positions. The polar plots are below.
 
+![pos53real](https://user-images.githubusercontent.com/71809396/168492190-528a1374-03b8-46c8-b82c-e1eb9ec8673c.png)
 
+![polar03](https://user-images.githubusercontent.com/71809396/168492205-5befaaf4-feaf-41a9-8cb7-275b4b0aa0aa.png)
 
+![polar00](https://user-images.githubusercontent.com/71809396/168492208-fd267823-6e02-4597-9e20-422ca8b73f88.png)
 
+![polar-3-2](https://user-images.githubusercontent.com/71809396/168492214-db7234d9-a27d-42ac-8ee1-b1313d119bb3.png)
 
+![polar5-3](https://user-images.githubusercontent.com/71809396/168492217-6bfecc5a-32e5-43d1-bbc3-662fd3f56935.png)
 
+## Data processing
+The next step in forming a map was to convert the polar coordinates of each ToF measurement into cartesian coordinates. 
+To do this, I simply used x = (sensor measurement) * cos(theta) and y = (sensor measurement) * sin(theta). I then added or subtracted the offset of the position the measurements were taken at to get the position in the map. 
+I used the following code to perform this sequence of operations:
 
-
-
-
-
-
-processing data: 
 ```
 for i in range(18):
-    p1x[i] = np.cos(pol[i]) * point1[i] + 5 * 0.3
+    p1x[i] = np.cos(pol[i]) * point1[i] + 5 * 0.3 
     p1y[i] = np.sin(pol[i]) * point1[i] - 3 * 0.3
     p2x[i] = np.cos(pol[i]) * point2[i] + 5 * 0.3
     p2y[i] = np.sin(pol[i]) * point2[i] + 3 * 0.3
@@ -85,3 +89,23 @@ for i in range(18):
     p5x[i] = np.cos(pol[i]) * point5[i] -3 * 0.3
     p5y[i] = np.sin(pol[i]) * point5[i] -2 * 0.3
 ```
+As you can see, since point1 was (5,-3), I added 5 * 0.3 to the x coordinate of each distance measurement and subtracted 3 * 0.3 for each y coordinate of the distance measurement (the 0.3 is due to the fact that the positions are measured in feet and the ToF on the python script is using meters, so 0.3 m = 1 ft). 
+This process allowed me to compute the map below, where each color refers to a different position's data.
+
+![combined map](https://user-images.githubusercontent.com/71809396/168492463-0d5023df-2423-4dbe-af0b-c43124df1bd2.png)
+
+There is clearly a lot of inaccuracy with the measurements, but you can still get a general idea of the room's layout. After examining this plot, 
+I decided to adjust the polar coordinates of some of the positions to make a better map. For example, rather than using the assumed theta array containing [0,20,40,..,340] degree measurements, for the red data points I added 8 degrees to each measurement. This gave me the plot below, which I think looks much better than the original.
+
+![combinedmapadjusted](https://user-images.githubusercontent.com/71809396/168492609-4e4289e0-62db-48e1-a47b-fa91ab8c00b1.png)
+
+Finally, I plotted line boundaries that I thought best matched the data. 
+
+![linesoverlay](https://user-images.githubusercontent.com/71809396/168492638-cd7e56f6-ada7-4caf-8a32-343b6141018f.png)
+
+
+
+
+
+
+

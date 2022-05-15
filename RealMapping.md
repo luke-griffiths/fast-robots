@@ -113,11 +113,7 @@ linex_box2 = [-0.3, -0.3, 0.75, 0.75, -0.3]
 liney_box2 = [-1.4, -0.9, -0.9, -1.4, -1.4]
 ```
 ## Improvements
-To get a better map, I would need to take many more measurements. I didn't experiment with different time intervals between measurements since I was told 18 would be enough, but doubling the number of measurements seems reasonable and would still be feasible for the ToF sensor. As far as reliability of the measurements, there seems to be a noticeable difference in data taken from the same position across different trials. As you can see, these two trials were taken at the same position (5,-3). The data looks pretty disimilar, but if you apply the same theta adjustment that I described above, the results improve significantly. 
-
-![trial12](https://user-images.githubusercontent.com/71809396/168493324-cc7bae28-ff4f-4ab5-a89a-9412f996cd62.png)
-
-![trial12adjust](https://user-images.githubusercontent.com/71809396/168493330-89a7606a-18f3-406d-8639-53d398b3bdf2.png)
+To get a better map, I would need to take many more measurements. I didn't experiment with different time intervals between measurements since I was told 18 would be enough, but doubling the number of measurements seems reasonable and would still be feasible for the ToF sensor. As far as reliability of the measurements, there seems to be some difference across different trials at each position; however, by using the theta adjustment technique I talked about earlier, the data matches much better. This further supports my assumption that differences in trials is caused by slightly different initial orientations, or possibly slightly different behavior of the robot during each trial (such as slipping, getting stuck on something, etc). 
 
 
 

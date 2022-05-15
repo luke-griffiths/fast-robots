@@ -53,3 +53,31 @@ void sensorInterrupt{
 }
 ```
 This made it much easier to keep deal with the data, and ensured that I only collected 18 data points. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+processing data: 
+```
+for i in range(18):
+    p1x[i] = np.cos(pol[i]) * point1[i] + 5 * 0.3
+    p1y[i] = np.sin(pol[i]) * point1[i] - 3 * 0.3
+    p2x[i] = np.cos(pol[i]) * point2[i] + 5 * 0.3
+    p2y[i] = np.sin(pol[i]) * point2[i] + 3 * 0.3
+    p3x[i] = np.cos(pol[i]) * point3[i]
+    p3y[i] = np.sin(pol[i]) * point3[i] + 3 * 0.3
+    p4x[i] = np.cos(pol[i]) * point4[i]
+    p4y[i] = np.sin(pol[i]) * point4[i]
+    p5x[i] = np.cos(pol[i]) * point5[i] -3 * 0.3
+    p5y[i] = np.sin(pol[i]) * point5[i] -2 * 0.3
+```

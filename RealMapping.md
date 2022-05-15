@@ -95,13 +95,29 @@ This process allowed me to compute the map below, where each color refers to a d
 ![combined map](https://user-images.githubusercontent.com/71809396/168492463-0d5023df-2423-4dbe-af0b-c43124df1bd2.png)
 
 There is clearly a lot of inaccuracy with the measurements, but you can still get a general idea of the room's layout. After examining this plot, 
-I decided to adjust the polar coordinates of some of the positions to make a better map. For example, rather than using the assumed theta array containing [0,20,40,..,340] degree measurements, for the red data points I added 8 degrees to each measurement. This gave me the plot below, which I think looks much better than the original.
+I decided to adjust the polar coordinates of some of the positions to make a better map. For example, rather than using the assumed theta array containing [0,20,40,..,340] degree measurements, for the red data points I added 8 degrees to each measurement. I believe this is likely due to slight variation in the robot's initial orientation (I was eyeballing it when I set the robot down at each point. A few degrees of difference at the beginning could result in the shifted data points). This gave me the plot below, which I think looks much better than the original.
 
 ![combinedmapadjusted](https://user-images.githubusercontent.com/71809396/168492609-4e4289e0-62db-48e1-a47b-fa91ab8c00b1.png)
 
 Finally, I plotted line boundaries that I thought best matched the data. 
 
 ![linesoverlay](https://user-images.githubusercontent.com/71809396/168492638-cd7e56f6-ada7-4caf-8a32-343b6141018f.png)
+
+The coordinates for the environment are below. Since I converted everything in meters and the next lab requires mm, I can simply multiply each value by 1000 since I use np arrays. 
+```
+linex_wall = [-1.3, -1.3, 2.15, 2.15, -0.5, -0.5, -1.3]
+liney_wall = [-0.15, -1.4, -1.4, 1.4, 1.4, -0.15, -0.15]
+linex_box1 = [0.5, 1.3, 1.3, 0.5, 0.5]
+liney_box1 = [-0.3, -0.3, 0.45, 0.45, -0.3]
+linex_box2 = [-0.3, -0.3, 0.75, 0.75, -0.3]
+liney_box2 = [-1.4, -0.9, -0.9, -1.4, -1.4]
+```
+## Improvements
+To get a better map, I would need to take many more measurements. I didn't experiment with different time intervals between measurements since I was told 18 would be enough, but doubling the number of measurements seems reasonable and would still be feasible for the ToF sensor. As far as reliability of the measurements, there seems to be a noticeable difference in data taken from the same position across different trials. As you can see, these two trials were taken at the same position (5,-3). The data looks pretty disimilar, but if you apply the same theta adjustment that I described above, the results improve significantly. 
+
+![trial12](https://user-images.githubusercontent.com/71809396/168493324-cc7bae28-ff4f-4ab5-a89a-9412f996cd62.png)
+
+![trial12adjust](https://user-images.githubusercontent.com/71809396/168493330-89a7606a-18f3-406d-8639-53d398b3bdf2.png)
 
 
 

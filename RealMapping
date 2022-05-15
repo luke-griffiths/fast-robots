@@ -38,11 +38,12 @@ int simplePID(){
 }
 ```
 Below is a video of the car spinning in a circle at the setpoint of 75. It's spinning much faster than 20 degrees per second here because the surface is slippery, 
-but you can clearly see that the robot stays roughly in the exact same position while spinning. If I wanted the car to slow down enough to be useful on this surface, I would need to make Kp much larger.
+but you can clearly see that the robot stays roughly in the exact same position while spinning. If I wanted the car to slow down enough to be useful on this surface, I would need to make Kp much largeror adjust the setpoint.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eMrYPoE4qGI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-I then created an interrupt function so that I would only take a distance measurement every 20 degrees (1 second). 
+I then created an interrupt function so that I would only take a distance measurement every 20 degrees (1 second).
+This made it much easier to deal with the data, and ensured that I only collected 18 data points per location. 
 ```
 void sensorInterrupt{
     if (millis() - prevTime > 1000){
@@ -52,7 +53,10 @@ void sensorInterrupt{
     }
 }
 ```
-This made it much easier to keep deal with the data, and ensured that I only collected 18 data points. 
+## Data Collection
+I put the robot at position (5,-3) in the map and recorded its ToF sensor values as it spun in a circle. 
+These values were stored in an array which I sent to my computer and processed in python. An example of the ToF readout is below
+
 
 
 

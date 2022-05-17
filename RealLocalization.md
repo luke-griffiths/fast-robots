@@ -58,3 +58,5 @@ This function takes a measurement once per second, which assumes that the robot'
         print(arr)
         return arr, arr2
 ```
+
+All that's left is to calibrate my PID to the robot in the lab (since mine is broken), place the robot at each position and run the jupyter notebook to predict where the robot is. This will be done today, 5/17 in lab

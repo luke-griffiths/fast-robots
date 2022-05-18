@@ -17,3 +17,7 @@
 <a href="Simulator.html"> lab 10 </a>
 
 <a href="Localization.html"> lab 11 </a>
+
+<a href="RealLocalization.html"> lab 11 </a>
+
+<a href="thirteen.html"> lab 11 </a>

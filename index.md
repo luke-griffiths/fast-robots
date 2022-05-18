@@ -18,6 +18,6 @@
 
 <a href="Localization.html"> lab 11 </a>
 
-<a href="RealLocalization.html"> lab 11 </a>
+<a href="RealLocalization.html"> lab 12 </a>
 
-<a href="thirteen.html"> lab 11 </a>
+<a href="thirteen.html"> lab 13 </a>

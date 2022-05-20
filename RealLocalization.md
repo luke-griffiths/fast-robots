@@ -97,4 +97,6 @@ Result (6,-3). This result is also slightly different from the expected value. O
 The robot localized slightly better in positions (-3,-2) and (0,3) than the other two positions. For the (5,3) and (5,-3) positions, I think it's more difficult for the robot to determine its position since the environments are similar when in these two positions. Just look at the polar plots for these positions, and rotate one to be on top of the other. The difference between the two is very difficult to identify, which is why the robot has trouble in these spots (it also didn't help that there was underrotation when localizing at these points). A room with more distinct features/landmarks will likely give more accurate localization results.
 
 
+Here's a quick video of my robot performing real localization. It's not in the map because lab hours are packed and the map is in high demand, but you can see that it works well. Ignore my reflection in the computer screen. 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/o97fTZqnQxY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

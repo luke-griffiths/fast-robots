@@ -91,7 +91,7 @@ Result (6,-3). This result is also slightly different from the expected value. O
 
 <img width="792" alt="Screen Shot 2022-05-19 at 2 46 44 PM" src="https://user-images.githubusercontent.com/71809396/169470016-28daff87-e1ae-4800-998b-32e5bc1d5323.png">
 
-<img width="828" alt="Screen Shot 2022-05-19 at 2 49 54 PM" src="https://user-images.githubusercontent.com/71809396/169470033-2bf2c7c7-cc83-429b-b556-0a7fe8f5e801.png">
+![5-3](https://user-images.githubusercontent.com/71809396/169471798-34523387-8b57-4054-96a9-cee32129565a.png)
 
 
 The robot localized slightly better in positions (-3,-2) and (0,3) than the other two positions. For the (5,3) and (5,-3) positions, I think it's more difficult for the robot to determine its position since the environments are similar when in these two positions. Just look at the polar plots for these positions, and rotate one to be on top of the other. The difference between the two is very difficult to identify, which is why the robot has trouble in these spots (it also didn't help that there was underrotation when localizing at these points). A room with more distinct features/landmarks will likely give more accurate localization results.

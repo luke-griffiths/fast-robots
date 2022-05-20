@@ -80,21 +80,21 @@ Result (0,3).
 Once again, this result correctly predicted the exact tile that the car was in. You can also tell that the car was again pointed forward rather than at the 0 degree point (to the right). So far so good!
 
 ### Real (5,3)
-Result (7,4). This result is a bit off from the actual value. I noticed that my PID was having difficulty keeping the car at a steady 20 degrees/second at this spot on the floor. Since the robot seemed to be getting stuck, I tried to increase Kp to account for this. This made my car react too aggressively and the localization results came out even worse, so I dropped back down to my previous Kp value. Unfortunately, this meant that my car undershot the 360 degree circle, and actually went about 330. This means that several measurements got clustered together, and the robot got slightly confused as to where it was. 
+Result (6,4). This result is a bit off from the actual value. I noticed that my PID was having difficulty keeping the car at a steady 20 degrees/second at this spot on the floor. Since the robot seemed to be getting stuck, I tried to increase Kp to account for this. This made my car react too aggressively and the localization results came out even worse, so I dropped back down to my previous Kp value. Unfortunately, this meant that my car undershot the 360 degree circle, and actually went about 330. This means that several measurements got clustered together, and the robot got slightly confused as to where it was. 
 
 <img width="790" alt="Screen Shot 2022-05-19 at 2 50 02 PM" src="https://user-images.githubusercontent.com/71809396/169469899-e22c5656-88c7-42e5-b5ae-da7097186631.png">
 
 ![53](https://user-images.githubusercontent.com/71809396/169469912-05e65439-e3c1-45dd-a071-5be57ff2d794.png)
 
 ### Real (5,-3)
-Result (
+Result (6,-3). This result is also slightly different from the expected value. Once again, my robot didn't behave smoothly at this point. This means localization might be difficult in lab13, since I would need to consistently turn 360 degrees no matter what point the robot is at in the map. 
 
 <img width="792" alt="Screen Shot 2022-05-19 at 2 46 44 PM" src="https://user-images.githubusercontent.com/71809396/169470016-28daff87-e1ae-4800-998b-32e5bc1d5323.png">
 
 <img width="828" alt="Screen Shot 2022-05-19 at 2 49 54 PM" src="https://user-images.githubusercontent.com/71809396/169470033-2bf2c7c7-cc83-429b-b556-0a7fe8f5e801.png">
 
 
-
+The robot localized slightly better in positions (-3,-2) and (0,3) than the other two positions. For the (5,3) and (5,-3) positions, I think it's more difficult for the robot to determine its position since the environments are similar when in these two positions. Just look at the polar plots for these positions, and rotate one to be on top of the other. The difference between the two is very difficult to identify, which is why the robot has trouble in these spots (it also didn't help that there was underrotation when localizing at these points). A room with more distinct features/landmarks will likely give more accurate localization results.
 
 
 

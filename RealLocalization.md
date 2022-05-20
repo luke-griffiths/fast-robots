@@ -59,4 +59,42 @@ This function takes a measurement once per second, which assumes that the robot'
         return arr, arr2
 ```
 
-All that's left is to calibrate my PID to the robot in the lab (since mine is broken), place the robot at each position and run the jupyter notebook to predict where the robot is. This will be done today, 5/17 in lab
+I used Kirsten's robot for this lab, since my motors are broken. I placed the robot at each of the positions and got the localization results shown below. 
+
+### Real (-3,-2)
+Result (-3,-2). 
+
+<img width="792" alt="Screen Shot 2022-05-19 at 2 43 17 PM" src="https://user-images.githubusercontent.com/71809396/169465609-7e8cceaa-0ac9-4efd-b6b5-872ca4964014.png">
+
+![-3-2](https://user-images.githubusercontent.com/71809396/169466970-2ded40da-0bb3-4573-9026-b71f98725ad9.png)
+
+Clearly this result shows that that localization is rotation invariant. My first measurement was taken with the car facing the front of the room rather than the 0 degree direction, however, the localization code still works great. 
+
+### Real (0,3)
+Result (0,3). 
+
+<img width="787" alt="Screen Shot 2022-05-19 at 2 41 26 PM" src="https://user-images.githubusercontent.com/71809396/169467519-0857f686-73ac-4e8a-a226-2d708e4dfdc6.png">
+
+![03](https://user-images.githubusercontent.com/71809396/169468101-fc578fef-42e3-4dac-847b-586e2c8d23c1.png)
+
+Once again, this result correctly predicted the exact tile that the car was in. You can also tell that the car was again pointed forward rather than at the 0 degree point (to the right). So far so good!
+
+### Real (5,3)
+Result (7,4). This result is a bit off from the actual value. I noticed that my PID was having difficulty keeping the car at a steady 20 degrees/second at this spot on the floor. Since the robot seemed to be getting stuck, I tried to increase Kp to account for this. This made my car react too aggressively and the localization results came out even worse, so I dropped back down to my previous Kp value. Unfortunately, this meant that my car undershot the 360 degree circle, and actually went about 330. This means that several measurements got clustered together, and the robot got slightly confused as to where it was. 
+
+<img width="790" alt="Screen Shot 2022-05-19 at 2 50 02 PM" src="https://user-images.githubusercontent.com/71809396/169469899-e22c5656-88c7-42e5-b5ae-da7097186631.png">
+
+![53](https://user-images.githubusercontent.com/71809396/169469912-05e65439-e3c1-45dd-a071-5be57ff2d794.png)
+
+### Real (5,-3)
+Result (
+
+<img width="792" alt="Screen Shot 2022-05-19 at 2 46 44 PM" src="https://user-images.githubusercontent.com/71809396/169470016-28daff87-e1ae-4800-998b-32e5bc1d5323.png">
+
+<img width="828" alt="Screen Shot 2022-05-19 at 2 49 54 PM" src="https://user-images.githubusercontent.com/71809396/169470033-2bf2c7c7-cc83-429b-b556-0a7fe8f5e801.png">
+
+
+
+
+
+

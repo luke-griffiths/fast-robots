@@ -38,7 +38,7 @@ int simplePID(){
 }
 ```
 Below is a video of the car spinning in a circle at the setpoint of 75. It's spinning much faster than 20 degrees per second here because the surface is slippery, 
-but you can clearly see that the robot stays roughly in the exact same position while spinning. If I wanted the car to slow down enough to be useful on this surface, I would need to make Kp much larger or adjust the setpoint.
+but you can clearly see that the robot stays roughly in the exact same position while spinning. If I wanted the car to slow down enough to be useful on this surface, I would need to make Kp much larger or adjust the setpoint.To see a video of the car spinning at 20 degrees per second accurately, check out my video in lab 12. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eMrYPoE4qGI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 

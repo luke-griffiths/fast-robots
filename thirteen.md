@@ -63,7 +63,7 @@ void turn(int angle){
 ```
 The map below shows the angles and distances needed to be traveled. The dotted blue line is the "setpoint" for PID when traveling from the first position to the second (once the tof reads this distance, the car should stop). Thus the original error being fed into my PID is 
 ```
-error = tof_reading() - distCache[i]
+error = tof_reading() - dist[i];
 ```
 ![IMG_B829652AA2CB-1](https://user-images.githubusercontent.com/71809396/169628799-bffc5ace-43ff-436e-a06c-47f75f2c8485.jpeg)
 

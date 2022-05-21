@@ -12,7 +12,11 @@ Above is the serial monitor output with one sensor connected. Below is the outpu
 <img width="464" alt="Screen Shot 2022-02-14 at 6 14 33 PM" src="https://user-images.githubusercontent.com/71809396/153962771-38c50fff-1054-4eb4-90d1-71ba050fe501.png">
 
 As you can see, when two sensors are connected, a slave is detected at each address possible. Obviously, I don't have 127 slave devices 
-connected to my Artemis (only 2), so there's an issue with the provided I2C code that needs to be addressed for future labs. 
+connected to my Artemis (only 2). The issue is that both of the two ToF sensors come with an identical address. This causes a bug on the Artemis that displays 127 slave devices. To fix this issue, the XSHUT pin on one sensor needs to be held low, to disable the sensor. Then the address of the remaining sensor can be changed to 0x54 by calling
+```
+setI2CAddress((uint8_t)0x54)
+```
+Then the first sensor can be re-enabled (by letting XSHUT be HIGH) and now both sensors are working. 
 
 To test the efficacy of the ToF sensors, I used a tape measure and measured the sensor distance vs the actual distance. Unfortunately, the only tape measure
 I could find used Imperial units, so my measurements are in inches instead of cm. 

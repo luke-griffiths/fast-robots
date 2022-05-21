@@ -94,7 +94,7 @@ int angle[angles] = {
 ## Results
 My robot was able to navigate through the waypoints, although it did make some mistakes. It generally stayed pretty close to the points I tried to hit. I noticed during the runs that the robot had several situations that caused it to underperform.
 
-* turns were rarely satisfactory. The lab floor alternated between dirty and freshly swiffered, which made it difficult to calibrate the PID for turns. This meant that I needed to tell the robot to re-execute turns way more frequently than I would have liked. 
+* turns were rarely satisfactory. The lab floor alternated between dirty and freshly swiffered, which made it difficult to calibrate the PID for turns. This meant that I needed to tell the robot to re-execute turns way more frequently (and in some cases multiple times) than I would have liked. 
 * the ToF sensor was angled slightly downward on the robot, which caused it to stop prematurely on long travels. This was easy to overcome using the AM_I_OK command, but it wasn't ideal.
 
 Below are two runs of the robot. 

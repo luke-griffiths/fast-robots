@@ -54,19 +54,42 @@ void turn(int angle){
     analogWrite(5,spinval);
     analogWrite(6,0);
     analogWrite(7,spinval);
-    while(millis() - curr < angle * 75){
-        //ADJUST THE VALUE 75 TO CALIBRATE THE TURN TO THE FLOOR PRIOR TO RUNNING
+    while(millis() - curr < angle * 35){
+        //ADJUST THE VALUE 35 TO CALIBRATE THE TURN TO THE FLOOR PRIOR TO RUNNING
     }     
     stop();
 }
 
 ```
+The map below shows the angles and distances needed to be traveled. The dotted blue line is the "setpoint" for PID when traveling from the first position to the second (once the tof reads this distance, the car should stop). Thus the original error being fed into my PID is 
+```
+error = tof_reading() - distCache[i]
+```
+![IMG_B829652AA2CB-1](https://user-images.githubusercontent.com/71809396/169628799-bffc5ace-43ff-436e-a06c-47f75f2c8485.jpeg)
+
+The arrays of measurements I computed prior to running the robot through the map are below.
+```
+int dist[travels] = {
+    862,
+    914,
+    682,
+    914,
+    1808,
+    1524,
+    914
+}
+int angle[angles] = {
+    45,
+    315,
+    300,
+    60, 
+    90,
+    90,
+    90
+}
+```
 
 
-!!!! Insert loop() sequence of instructions
-
-
-!!!! Insert map of ToF data
 
 ## Results
 My robot was able to navigate through the waypoints, although it did make some mistakes. It generally stayed pretty close to the points I tried to hit. I noticed during the runs that the robot had several situations that caused it to underperform.

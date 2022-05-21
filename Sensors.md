@@ -70,6 +70,58 @@ To setup the IMU, I once again used the I2C code. This time the device was detec
 To test the IMU, I ran the provided code after making one change: the AD0_VAL needed to be set to 0, because the last bit of the IMU's I2C address is a 0. 
 Note that any odd numbered I2C addresses need AD0_VAL to be 1, and any even addresses need it to be 0. I then tested the IMU's ability to capture pitch. I started in the -90 degree position, then changed to 0 degrees, followed by 90 degrees. For some reason, the IMU registered -90 as a large positive value rather than the -pi/2 radians I was expecting. I don't believe this is an issue with my code, but I need to get access to a second IMU to determine if there's a defect with the one I'm using. 
 
+### Accelerometer
+
+To compute the pitch and roll, I used
+```
+int pitch = 180 * atan2(myICM.accX(), myICM.accZ()) / M_PI; 
+int roll = 180 * atan2(myICM.accY(), myICM.accZ()) / M_PI;
+```
+Here is a plot of pitch at 90 0 -90:
+
+<img width="670" alt="Screen Shot 2022-05-20 at 11 47 19 PM" src="https://user-images.githubusercontent.com/71809396/169634275-6cb0b4d2-1f74-4bcb-8146-244dbe9b16ac.png">
+
+Here is a plot of roll at 90 0 -90:
+
+<img width="586" alt="Screen Shot 2022-05-20 at 11 48 27 PM" src="https://user-images.githubusercontent.com/71809396/169634280-c44fafda-4a31-453b-ac5d-cead48714bcd.png">
+
+To create a low-pass filter for the pitch, I used the equation
+```
+//float a is some value that smoothes out the pitch
+pitch_t_1 =  a * pitch_t_1 + (1-a) * pitch_t_0;
+
+```
+Which greatly smoothed out the transition from 90 to 0, as you can see here:
+
+<img width="523" alt="Screen Shot 2022-05-20 at 11 54 57 PM" src="https://user-images.githubusercontent.com/71809396/169634487-fff6417a-4432-4248-bf25-a15c61b6ab23.png">
+
+
+### Gyros
+
+Roll pitch and yaw can be calculated from the gyroscope data using
+```
+roll  = roll - sensor.gyrX() * dt * 0.001;
+
+pitch = pitch - sensor.gyrY() * dt * 0.001;
+
+yaw   = yaw - sensor.gyrZ() * dt * 0.001;
+```
+where dt is the length of time since these mesurements were last updated. Effectively this is using integration to determine these values. I noticed that when the sensor was held still, there was a significant amount of drift with these three measurments.
+
+<img width="956" alt="Screen Shot 2022-05-21 at 12 12 35 AM" src="https://user-images.githubusercontent.com/71809396/169634936-d304fa75-4c9d-4334-86b1-5a2b0b996cb5.png">
+
+In the image, roll is blue, pitch is green, yaw is red. To mitigate the drift in these measurements, a complimentary filter using data from the accelerometer and magnetometer can be used. I chose to use the same formula as the low-pass filter above, except rather than use the previous measurement I combined the accelerometer data with the gyroscope according to some scaling factor alpha. 
+
+```
+//float a is some value that smoothes out the pitch
+pitch_comp =  a * pitch_gyr + (1-a) * pitch_acc;
+```
+Note that pitch_acc is also filtered using a low-pass filter, since that gave me better results before. the result of pitch_comp and pitch_roll is below.  I chose a = 0.4, but this can be adusted. Clearly, there is less drift with the complimentary filter. 
+
+<img width="756" alt="Screen Shot 2022-05-21 at 12 24 10 AM" src="https://user-images.githubusercontent.com/71809396/169635240-899a7739-35b3-40b8-91cb-95df1ace0c27.png">
+
+
+
 <img width="435" alt="Screen Shot 2022-02-14 at 11 27 04 PM" src="https://user-images.githubusercontent.com/71809396/153992615-be887daf-1aa5-4f7c-b3d1-2581532bf2c5.png">
 
 

@@ -46,15 +46,21 @@ Instead, I went with a modified open-loop control method. I placed the robot at 
 
 This robot stopped whenever it completed one of these actions, and the value sent in the AM_I_OK command determined its next course of action. Originally I had the command return a boolean to the robot, allowing it to proceed if AM_I_OK == true and adjust if false, but this would only work if all needed adjustments were equal(I'll talk more about this in the Future Iterations section). Instead, I made the command return a float from 0-10, where a 0 meant no correction was needed and a 10 meant repeat the previous action at full effort value. 
 
-Code samples of each new function I made are below, as well as a map showing the robot's moves.
 
-!!!! Insert Turn function
+```
+void turn(int angle){
+    long int curr = millis();
+    analogWrite(4,0);
+    analogWrite(5,spinval);
+    analogWrite(6,0);
+    analogWrite(7,spinval);
+    while(millis() - curr < angle * 75){
+        //ADJUST THE VALUE 75 TO CALIBRATE THE TURN TO THE FLOOR PRIOR TO RUNNING
+    }     
+    stop();
+}
 
-
-!!!! Insert travel function
-
-
-!!!! Insert AM_I_OK command
+```
 
 
 !!!! Insert loop() sequence of instructions
@@ -71,6 +77,8 @@ My robot was able to navigate through the waypoints, although it did make some m
 Below are two runs of the robot. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/S_FE6KnpowE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hSddVXIX4f4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 

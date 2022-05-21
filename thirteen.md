@@ -63,8 +63,20 @@ Code samples of each new function I made are below, as well as a map showing the
 !!!! Insert map of ToF data
 
 ## Results
+My robot was able to navigate through the waypoints, although it did make some mistakes. It generally stayed pretty close to the points I tried to hit. I noticed during the runs that the robot had several situations that caused it to underperform.
+
+* turns were rarely satisfactory. The lab floor alternated between dirty and freshly swiffered, which made it difficult to calibrate the PID for turns. This meant that I needed to tell the robot to re-execute turns way more frequently than I would have liked. 
+* the ToF sensor was angled slightly downward on the robot, which caused it to stop prematurely on long travels. This was easy to overcome using the AM_I_OK command, but it wasn't ideal.
+
+Below are two runs of the robot. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/S_FE6KnpowE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hSddVXIX4f4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 
 ## Ways to Improve Results/Future Iterations
 
+For the future I would like to use a hybrid presequenced steps and localization approach. When I originally planned to make the AM_I_OK command a boolean, I thought it would be a good idea to use localization if and only if AM_I_OK returned false. This would mean that localization could be used to correct mistakes that had accumulated, but it would be used sparingly and thus cost less time. This would be implemented by following the sequence of pre-cached translations and rotations UNTIl AM_I_OK returned false, it which point the robot would localize, attempt to return to the nearest waypoint, and then resume its pre-cached instructions. This approach would combine advantages of both methods and hopefully mitigate the disadvantages. 
 
-When I originally planned to make the AM_I_OK command a boolean, I thought it would be a good idea to use localization if and only if AM_I_OK returned false. This would mean that localization could be used to correct mistakes that had accumulated, but it would be used sparingly and thus cost less time. 
+A very creative approach for the future would be to create a makeshift scanner for localization. A ToF sensor could be mounted on a servo on the top of the robot, allowing very precise ToF measurements while the robot is stopped. This would generate a much better localization result, since the robot wouldn't move from its initial position while localizing. In addition, even cheap feedback servos are more reliable than the gyroscope data on the IMU, so the change in theta for ToF measurements would be more reliable. 

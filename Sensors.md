@@ -122,12 +122,5 @@ Note that pitch_acc is also filtered using a low-pass filter, since that gave me
 
 
 
-<img width="435" alt="Screen Shot 2022-02-14 at 11 27 04 PM" src="https://user-images.githubusercontent.com/71809396/153992615-be887daf-1aa5-4f7c-b3d1-2581532bf2c5.png">
-
-
-
-
-
-
 
 

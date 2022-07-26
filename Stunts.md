@@ -59,6 +59,4 @@ I found that giving the car a push usually helped motor #1 spin somewhat reliabl
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/I8wHLv504H4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-## Conclusion
-I'm disappointed that I couldn't get the car to perform a stunt; however, I'm hopeful that I can still get a reasonable grade for this lab due to the amount of time, effort, and hardware debugging I've put in. This lab has been a hardware headache, but I think spending hours resoldering leads and debugging code/electrical signals is an important aspect of this class. After all, the goal of this class isn't to make a robot do a flip. Rather, the goal is to learn techniques for robotic control while gaining valuable problem-solving/hardware debugging skills.
 

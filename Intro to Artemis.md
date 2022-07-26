@@ -12,10 +12,6 @@ The next test script for the Artemis board was Arduino's MicrophoneOutput script
 
 <img width="322" alt="Screen Shot 2022-01-30 at 2 41 35 PM" src="https://user-images.githubusercontent.com/71809396/151715231-605a94f9-0277-4367-b3f1-0d84b33736d1.png">
 
-### Printing to the Serial Monitor
-The Serial test script ensures the serial monitor works, and that messages can be sent and received between my computer and the Artemis. This is a simple UART script, which you can see at work in the video below. 
-
-![Screen Recording 2022-01-30 at 2 33 07 PM](https://user-images.githubusercontent.com/71809396/151727943-fd8852fd-f1fe-4850-a227-e2035a2ddfe8.gif)
 
 ### Internal Measurements
 The final test script is the analogRead script. This script reads the values of   

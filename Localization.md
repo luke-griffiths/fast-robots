@@ -1,7 +1,5 @@
 # Localization
 
-*Disclaimer: I had an issue that prevented me from recording the video and submitting before the lab deadline. Jonathan was able to find the issue with my code, which I have corrected and have noted in the report below. None of the code changes come from the released code, and any other edits after the deadline are solely for adding detail to my report. 
-
 The purpose of this lab is to implement a Bayes filter for robot localization. The tasks in this lab were to write 5 functions that make up the Bayes filter and then demonstrate via screen capture that the implementation works correctly. 
 
 

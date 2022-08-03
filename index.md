@@ -4,13 +4,9 @@
 
 <a href="Bluetooth.html"> Bluetooth </a>
 
-<a href="cyclone.html"> Car Characterization </a>
-
 <a href="Motors.html"> Motors </a>
 
 <a href="PID.html"> PID </a>
-
-<a href="KalmanFilter.html"> Kalman Filter </a>
 
 <a href="Stunts.html"> Stunts </a>
 
